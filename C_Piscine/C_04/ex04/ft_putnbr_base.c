@@ -5,59 +5,85 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: reiascan <reiascan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 12:45:33 by reiascan          #+#    #+#             */
-/*   Updated: 2026/02/13 12:46:55 by reiascan         ###   ########.fr       */
+/*   Created: 2026/02/14 15:33:36 by reiascan          #+#    #+#             */
+/*   Updated: 2026/02/15 18:01:00 by reiascan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h> // Solo para el printf de prueba
 
-// 1. FUNCIÓN RECURSIVA (Basada totalmente en ft_putnbr)
-void	ft_fill_recursive(long nb, char *arr, int *i)
+#include <unistd.h>
+
+//To copy the int limit into the array
+
+int	ft_strlen(char *str)
 {
-	// Si el número tiene más de un dígito, seguimos profundizando
-	if (nb >= 10)
-		ft_fill_recursive(nb / 10, arr, i);
+	int	count;
 
-	// En lugar de write(1, &digit, 1), guardamos en el array
-	arr[*i] = (nb % 10) + '0';
-	
-	// Avanzamos la posición del índice para el siguiente dígito
-	*i = *i + 1;
+	count = 0;
+	while (str[count] != '\0')
+	{
+		count++;
+	}
+	return (count);
 }
 
-// 2. FUNCIÓN PRINCIPAL (La que tú llamarás)
-void	ft_putnbr_to_array(int nb, char *arr)
+//to fill the array digit to digit
+void	ft_fill_arr(long nbr, char *arr, int *i)
 {
-	int		i;
-	long	n;
+	if (nbr >= 10)
+		ft_fill_arr((nbr / 10), arr, i);
+	arr[*i] = (nbr % 10) + '0';
+	*i += 1;
+}
+
+//to
+void	ft_putnbr_to_str(int nbr, char *arr)
+{
+	int	i;
+	long n;
 
 	i = 0;
-	n = nb;
-	// Si es negativo, ponemos el menos y pasamos el número a positivo
+	n = nbr;
 	if (n < 0)
 	{
 		arr[i] = '-';
 		i++;
 		n = -n;
 	}
-	
-	// Llamamos a la parte recursiva
-	ft_fill_recursive(n, arr, &i);
-	
-	// Ponemos el fin de string para que sea un array válido
+	ft_fill_arr(n, arr, &i);
 	arr[i] = '\0';
 }
-
-// EJEMPLO DE USO
-int	main(void)
+void	ft_translate(unsigned char c, char *base, int size)
 {
-	char	mi_lista[12]; // Espacio suficiente para cualquier int
-
-	ft_putnbr_to_array(-2147483648, mi_lista);
-	
-	printf("Resultado en el array: %s\n", mi_lista);
-	return (0);
+	write (1, &base[((c - '0') / size)], 1);
+	write (1, &base[(c - '0') % size], 1);
 }
 
+void	ft_putbnbr_base(int nbr, char *base)
+{
+	int	i;
+	int	size;
+	char	numbers[12];
 
+	i = 0;
+
+	ft_putnbr_to_str(nbr, numbers);
+	size = ft_strlen(numbers);
+	while (numbers[i] != '0')
+	{
+		ft_translate(numbers[i], base, size);
+		i++;
+	}
+}
+
+#include <stdio.h>
+
+int	main(void)
+{
+	char	numbers[12];
+	ft_translate('15', "0123456789ABCDEF", 16);
+	// ft_putbnbr_base(1, "0123456789ABCDEF");
+	ft_putnbr_to_str(-2147483648, numbers);
+	printf("\n%s", numbers);
+	return (0);
+}
