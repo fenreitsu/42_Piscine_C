@@ -6,14 +6,11 @@
 /*   By: reiascan <reiascan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 15:33:36 by reiascan          #+#    #+#             */
-/*   Updated: 2026/02/15 18:01:00 by reiascan         ###   ########.fr       */
+/*   Updated: 2026/02/16 21:06:02 by reiascan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <unistd.h>
-
-//To copy the int limit into the array
 
 int	ft_strlen(char *str)
 {
@@ -27,63 +24,61 @@ int	ft_strlen(char *str)
 	return (count);
 }
 
-//to fill the array digit to digit
-void	ft_fill_arr(long nbr, char *arr, int *i)
-{
-	if (nbr >= 10)
-		ft_fill_arr((nbr / 10), arr, i);
-	arr[*i] = (nbr % 10) + '0';
-	*i += 1;
-}
-
-//to
-void	ft_putnbr_to_str(int nbr, char *arr)
+int	ft_errors_validation(char *base, int size)
 {
 	int	i;
-	long n;
+	int	j;
 
 	i = 0;
-	n = nbr;
-	if (n < 0)
+	if (size <= 1)
+		return (0);
+	while (base[i])
 	{
-		arr[i] = '-';
-		i++;
-		n = -n;
-	}
-	ft_fill_arr(n, arr, &i);
-	arr[i] = '\0';
-}
-void	ft_translate(unsigned char c, char *base, int size)
-{
-	write (1, &base[((c - '0') / size)], 1);
-	write (1, &base[(c - '0') % size], 1);
-}
-
-void	ft_putbnbr_base(int nbr, char *base)
-{
-	int	i;
-	int	size;
-	char	numbers[12];
-
-	i = 0;
-
-	ft_putnbr_to_str(nbr, numbers);
-	size = ft_strlen(numbers);
-	while (numbers[i] != '0')
-	{
-		ft_translate(numbers[i], base, size);
+		if (base[i] == '-' || base[i] == '+')
+			return (0);
+		j = i + 1;
+		while (base[j])
+		{
+			if (base[i] == base[j])
+				return (0);
+			j++;
+		}
 		i++;
 	}
+	return (1);
 }
 
-#include <stdio.h>
-
-int	main(void)
+void	ft_putnbr_base(int nbr, char *base)
 {
-	char	numbers[12];
-	ft_translate('15', "0123456789ABCDEF", 16);
-	// ft_putbnbr_base(1, "0123456789ABCDEF");
-	ft_putnbr_to_str(-2147483648, numbers);
-	printf("\n%s", numbers);
+	int		len;
+
+	len = ft_strlen(base);
+	if (ft_errors_validation(base, len) == 1)
+	{
+		if (nbr == -2147483648)
+		{
+			write (1, "-2147483648", 11);
+		}
+		else if (nbr < 0)
+		{
+			nbr = nbr * (-1);
+			write (1, "-", 1);
+			ft_putnbr_base(nbr, base);
+		}
+		else
+		{
+			if (nbr / len != 0)
+				ft_putnbr_base((nbr / len), base);
+			write (1, &base[(nbr % len)], 1);
+		}
+	}
+}
+
+/* int	main(void)
+{
+	ft_putnbr_base(1234, "0123456789");
+	write (1, "\n", 1);
+	ft_putnbr_base(-126, "0123456789ABCDEF");
+	write (1, "\n", 1);
 	return (0);
-}
+} */
