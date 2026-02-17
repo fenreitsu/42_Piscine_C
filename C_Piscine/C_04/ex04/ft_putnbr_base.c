@@ -6,7 +6,7 @@
 /*   By: reiascan <reiascan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 15:33:36 by reiascan          #+#    #+#             */
-/*   Updated: 2026/02/16 21:06:02 by reiascan         ###   ########.fr       */
+/*   Updated: 2026/02/17 19:19:02 by reiascan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ void	ft_putnbr_base(int nbr, char *base)
 	{
 		if (nbr == -2147483648)
 		{
-			write (1, "-2147483648", 11);
+			ft_putnbr_base(nbr / len, base);
+			write (1, &base[-(nbr % len)], 1);
 		}
 		else if (nbr < 0)
 		{
-			nbr = nbr * (-1);
 			write (1, "-", 1);
-			ft_putnbr_base(nbr, base);
+			ft_putnbr_base(-nbr, base);
 		}
 		else
 		{
@@ -76,9 +76,17 @@ void	ft_putnbr_base(int nbr, char *base)
 
 /* int	main(void)
 {
-	ft_putnbr_base(1234, "0123456789");
+	ft_putnbr_base(-126, "0123456789");
 	write (1, "\n", 1);
 	ft_putnbr_base(-126, "0123456789ABCDEF");
+	write (1, "\n", 1);
+	ft_putnbr_base(-126, "poniguay");
+	write (1, "\n", 1);
+	ft_putnbr_base(-126, "");
+	write (1, "\n", 1);
+	ft_putnbr_base(-126, "01");
+	write (1, "\n", 1);
+	ft_putnbr_base(-2147483648, "0123456789");
 	write (1, "\n", 1);
 	return (0);
 } */
