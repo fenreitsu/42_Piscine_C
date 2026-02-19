@@ -6,7 +6,7 @@
 /*   By: reiascan <reiascan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:35:48 by reiascan          #+#    #+#             */
-/*   Updated: 2026/02/19 19:20:31 by reiascan         ###   ########.fr       */
+/*   Updated: 2026/02/19 21:04:50 by reiascan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,14 @@ int	get_number(char c, char *base)
 {
 	int	i;
 
-	i = -1;
-	while (base[++i])
+	i = 0;
+	while (base[i])
+		{
 		if (c == base[i])
 			return (i);
-	return (0);
+		i++;
+		}
+	return (-1);
 }
 
 int	ft_atoi_base(char *str, char *base)
@@ -78,13 +81,15 @@ int	ft_atoi_base(char *str, char *base)
 			sign *= -1;
 		i++;
 	}
-	i -= 1;
-	while (get_number(str[++i], base) != 0)
-		result = (result * 10) + get_number(str[i], base);
+	while (get_number(str[i], base) != -1)
+	{
+		result = (result * len) + get_number(str[i], base);
+		i++;
+	}
 	return (result * sign);
 }
 
-/* #include <unistd.h>
+#include <unistd.h>
 
 void	ft_putnbr(int nbr)
 {
@@ -109,5 +114,5 @@ void	ft_putnbr(int nbr)
 
 int	main(void)
 {
-	ft_putnbr(ft_atoi_base("96", "0123456789ABCDEF"));
-} */
+	ft_putnbr(ft_atoi_base("nn", "regina"));
+}
