@@ -6,7 +6,7 @@
 /*   By: reiascan <reiascan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 18:34:03 by reiascan          #+#    #+#             */
-/*   Updated: 2026/02/18 20:09:15 by reiascan         ###   ########.fr       */
+/*   Updated: 2026/02/19 10:32:07 by reiascan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int	main(int argc, char **argv)
 	else
 	{
 		while (argv[--argc] && argc > 0)
-			ft_putstr(&argv[argc][0]);
+			ft_putstr(argv[argc]);
 	}
 }
