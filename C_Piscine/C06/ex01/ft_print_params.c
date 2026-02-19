@@ -6,7 +6,7 @@
 /*   By: reiascan <reiascan@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:18:19 by reiascan          #+#    #+#             */
-/*   Updated: 2026/02/18 20:08:49 by reiascan         ###   ########.fr       */
+/*   Updated: 2026/02/19 10:40:30 by reiascan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	if (argc < 0)
 		return (0);
 	while (argv[i])
