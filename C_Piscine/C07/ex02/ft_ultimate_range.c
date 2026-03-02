@@ -29,8 +29,8 @@ int	ft_ultimate_range(int **range, int min, int max)
 	{
 		len = max - min;
 		arr = malloc(sizeof(int) * len);
-		if (!arr) //esta comprobacion es para revisar que malloc no ha fallado.y
-		//cumplir con retornar "-1" sin hay otro problema"
+		if (!arr) //esta comprobacion es para revisar que malloc no ha fallado y
+		//cumple con retornar "-1" si hay otro problema"
 			return (-1);
 		*range = arr; //Tengo que asegurarme de que el puntero *range, tenga el
 		// valor que necesito, "arr" es sólo un puntero que cree porque no sé
