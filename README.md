@@ -1,9 +1,9 @@
 # 42 Piscine C – Mi experiencia de aprendizaje
 
-[![42](https://img.shields.io/badge/42-Piscine_C-blue?style=flat-square&logo=42)](https://www.42network.org/)
-[![Language: C](https://img.shields.io/badge/C-99.8%25-00599C?style=flat-square&logo=c)](https://en.wikipedia.org/wiki/C_(programming_language))
-[![Language: Shell](https://img.shields.io/badge/Shell-0.2%25-4EAA25?style=flat-square&logo=gnu-bash)](https://www.gnu.org/software/bash/)
-[![Status: Personal Archive](https://img.shields.io/badge/status-personal_archive-lightgrey?style=flat-square)](https://github.com/fenreitsu/42_Piscine_C)
+[![42](https://img.shields.io/badge/42-Piscine_C-blue)](https://www.42network.org/)
+[![Language: C](https://img.shields.io/badge/C-99.8%25-00599C)](https://en.wikipedia.org/wiki/C_(programming_language))
+[![Language: Shell](https://img.shields.io/badge/Shell-0.2%25-4EAA25?logo=gnu-bash)](https://www.gnu.org/software/bash/)
+[![Status: Personal Archive](https://img.shields.io/badge/status-personal_archive-lightgrey)](https://github.com/fenreitsu/42_Piscine_C)
 
 Este repositorio es un **archivo personal** de mi trabajo durante la **Piscina de C** de 42. Contiene las soluciones que desarrollé para los ejercicios y proyectos de los módulos, y otros retos del proceso de selección.
 
